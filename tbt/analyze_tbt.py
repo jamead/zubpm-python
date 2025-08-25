@@ -33,7 +33,7 @@ def read_tbtdata(fname):
    ypos = []
 
    linenum = 0;
-   maxpts = 500000;
+   maxpts = 1000000;
 
    with open(fname,'r') as fin:
      for line in fin:

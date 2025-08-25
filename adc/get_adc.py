@@ -41,7 +41,22 @@ def main():
 
     # Trigger the BPM
     trig_pv.put(1)
+    print("Triggering BPM...")
     time.sleep(1)
+    print("Waiting for Data ")
+
+
+    wfmrdy_pv = epics.PV(bpm_prefix+'DMA:Busy-I')
+    
+    while True:
+        val = wfmrdy_pv.get(1)
+        print("Busy=%d" % val)
+        time.sleep(0.1)
+        if val == 0:
+            break;
+
+    print("Transfer Complete")
+
 
     # Read waveform
     adc_data = get_waveform(tbt_pv, 1000000)
